@@ -1,0 +1,68 @@
+--- CREATE
+
+-- Menambahkan data pemasok
+INSERT INTO Pemasok (ID_pemasok, Nama_pemasok, Alamat_pemasok)
+VALUES (1, 'ABC Supplier', 'Jl. Sudirman No. 123');
+
+-- Menambahkan data komponen
+INSERT INTO Komponen (ID_komponen, Nama_komponen, Deskripsi_komponen)
+VALUES (1, 'Motherboard', 'Komponen utama dalam sebuah komputer');
+
+-- Menambahkan data produk
+INSERT INTO Produk (ID_produk, Nama_produk, Deskripsi_produk)
+VALUES (1, 'Laptop ABC', 'Laptop dengan spesifikasi tinggi');
+
+-- READ
+-- Membaca data pemasok
+SELECT * FROM Pemasok;
+
+-- Membaca data komponen
+SELECT * FROM Komponen;
+
+-- Membaca data produk
+SELECT * FROM Produk;
+
+-- Membaca data produk dan komponennya
+SELECT p.Nama_produk, k.Nama_komponen, pk.Jumlah_komponen
+FROM Produk p
+JOIN Produk_Komponen pk ON p.ID_produk = pk.ID_produk
+JOIN Komponen k ON pk.ID_komponen = k.ID_komponen;
+
+-- UPDATE
+-- Mengupdate data pemasok
+UPDATE Pemasok
+SET Nama_pemasok = 'DEF Supplier'
+WHERE ID_pemasok = 1;
+
+-- Mengupdate data komponen
+UPDATE Komponen
+SET Deskripsi_komponen = 'Komponen utama dalam sebuah PC'
+WHERE ID_komponen = 1;
+
+-- Mengupdate data produk
+UPDATE Produk
+SET Nama_produk = 'PC XYZ'
+WHERE ID_produk = 1;
+
+-- Mengupdate data jumlah komponen dalam produk
+UPDATE Produk_Komponen
+SET Jumlah_komponen = 2
+WHERE ID_produk = 1 AND ID_komponen = 1;
+
+
+-- DELETE
+-- Menghapus data pemasok
+DELETE FROM Pemasok
+WHERE ID_pemasok = 1;
+
+-- Menghapus data komponen
+DELETE FROM Komponen
+WHERE ID_komponen = 1;
+
+-- Menghapus data produk
+DELETE FROM Produk
+WHERE ID_produk = 1;
+
+-- Menghapus data jumlah komponen dalam produk
+DELETE FROM Produk_Komponen
+WHERE ID_produk = 1 AND ID_komponen = 1;

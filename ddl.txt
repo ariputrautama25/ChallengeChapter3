@@ -1,0 +1,37 @@
+-- Create database
+CREATE DATABASE penjualan;
+
+-- Use database
+USE penjualan;
+
+-- Create table Pemasok
+CREATE TABLE Pemasok (
+  id_pemasok BIGSERIAL PRIMARY KEY,
+  nama_pemasok VARCHAR(50) not null,
+  alamat_pemasok VARCHAR(100) not null
+);
+
+-- Create table Komponen
+CREATE TABLE Komponen (
+  id_komponen BIGSERIAL PRIMARY KEY,
+  nama_komponen VARCHAR(50) not null,
+  deskripsi_komponen TEXT not null,
+  FOREIGN KEY (id_pemasok) REFERENCES Pemasok(id_pemasok)
+);
+
+-- Create table Produk
+CREATE TABLE Produk (
+  id_produk BIGSERIAL PRIMARY KEY,
+  nama_produk VARCHAR(50) not null,
+  deskripsi_produk TEXT not null
+);
+
+-- Create table Produk_Komponen
+CREATE TABLE Produk_Komponen (
+  id_produk INT,
+  id_komponen INT,
+  jumlah_komponen INT,
+  PRIMARY KEY (id_produk, id_komponen),
+  FOREIGN KEY (id_produk) REFERENCES Produk(id_produk),
+  FOREIGN KEY (id_komponen) REFERENCES Komponen(id_komponen)
+);
